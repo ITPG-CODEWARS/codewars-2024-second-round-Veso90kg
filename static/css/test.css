@@ -1,0 +1,159 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: VT323;
+}
+
+body {
+    background-color: #0a140a;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: VT323;
+}
+.bezel {
+    position: fixed; /* Fixed to stay in place even when scrolling */
+    top: 0;
+    left: 0;
+    width: 100%; /* Stretch to the full width of the screen */
+    height: 100%; /* Stretch to the full height of the screen */
+    background-image: url('https://i.postimg.cc/SR8v7BDM/bezel.png'); /* Path to the scanlines image */
+    background-repeat: no-repeat; /* Prevent repeating */
+    background-size: 100% 100%; /* Stretch the image to fill the entire screen */
+    pointer-events: none; /* Prevents the image from blocking user interaction */
+    z-index: 9999; /* Ensures it is on top of all other elements */
+    opacity: 1; /* Adjust the opacity to control the visibility of the effect */
+}
+.scanlines {
+    position: fixed; /* Keeps the scanlines fixed while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://i.postimg.cc/tJhBVh4d/scanlines.png'); /* Path to your scanlines image */
+    background-repeat: repeat; /* Ensures the image is repeated */
+    pointer-events: none; /* Prevents the scanlines from interfering with clicks or interactions */
+    z-index: 9999; /* Ensure it sits on top of the other content */
+    opacity: 1; /* Adjust opacity if you want the scanlines to be more or less visible */
+}
+
+/* Train reverse animation */
+@keyframes train-move-reverse {
+    100% {
+        transform: translateX(99%); /* Start from the right */
+    }
+    0% {
+        transform: translateX(-100%); /* Move to the left */
+    }
+}
+
+.train {
+    font-size: 1em;
+    color: #00ff00;
+    white-space: pre; /* Preserve spaces and line breaks in ASCII art */
+    display: inline-block;
+    animation: train-move-reverse 5s linear forwards; /* Adjust duration as needed */
+    margin-top: 10px;
+}
+
+/* Terminal container */
+#terminal {
+    background-color: #102010;
+    border: 2px solid #00ff00;
+    padding: 20px;
+    width: 89%;
+    max-width: 100%;
+    height: 87%;
+    overflow-y: scroll; /* Enable scrolling */
+    font-family: VT323;
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+.smaller-font{
+    font-size: 10px;
+}
+/* Custom scrollbar for Webkit browsers (Chrome, Safari) */
+#terminal::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+#terminal::-webkit-scrollbar-thumb {
+    background-color: #00ff00; /* Green color for thumb */
+    border-radius: 10px; /* Rounded thumb */
+}
+
+#terminal::-webkit-scrollbar-thumb:hover {
+    background-color: #32CD32; /* Lighter green on hover */
+}
+
+#terminal::-webkit-scrollbar-track {
+    background: #003300; /* Dark green background for the track */
+    border-radius: 10px; /* Rounded track */
+}
+
+/* For Firefox */
+#terminal {
+    scrollbar-width: thin;
+    scrollbar-color: #00ff00 #003300; /* Thumb and track colors for Firefox */
+}
+
+#output {
+    white-space: pre-wrap;
+    margin-bottom: 10px;
+    font-family: VT323;
+}
+
+#input-line {
+    display: flex;
+    font-family: VT323;
+}
+
+#prompt {
+    margin-right: 5px;
+    font-family: VT323;
+}
+
+#input {
+    background: transparent;
+    border: none;
+    color: #00ff00;
+    outline: none;
+    flex-grow: 1;
+    font-family: VT323;
+}
+/* Loading screen styling */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0a140a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000; /* Ensure it covers everything */
+    color: #00ff00;
+    font-size: 1.5em;
+    font-family: VT323;
+    pointer-events: none;
+}
+
+/* Blinking cursor animation */
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.loading-text::after {
+    content: "|";
+    display: inline-block;
+    animation: blink 0.8s infinite;
+}
+
