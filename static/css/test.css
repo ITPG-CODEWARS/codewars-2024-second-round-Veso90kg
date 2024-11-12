@@ -75,7 +75,7 @@ body {
     scroll-behavior: smooth; /* Smooth scrolling */
 }
 .smaller-font{
-    font-size: 10px;
+    font-size: 4px;
 }
 /* Custom scrollbar for Webkit browsers (Chrome, Safari) */
 #terminal::-webkit-scrollbar {
